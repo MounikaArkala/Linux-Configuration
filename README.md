@@ -90,9 +90,9 @@ The public IP address of the instance is displayed along with its name. In the a
 
 4. cd to the /var/www/itemCatalog/itemCatalog directory
 
-Change the name of the project.py file to __init__.py by running mv project.py __init__.py
+5. Change the name of the project.py file to __init__.py by running mv project.py __init__.py
 
-In __init__.py, find line 508:
+6. In __init__.py, find line 508:
 
 app.run(host='0.0.0.0', port=5656)
 
@@ -100,6 +100,38 @@ Change this line to:
 
 app.run()
 
+7. Log in to Google API Console and edit the Client ID for Web application
+8. Add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
+9. Add http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/login, http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/gconnect, and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/oauth2callback as authorized redirect URIs
+
+10. Download the JSON file and save it as client_secrets.json in the /var/www/itemCatalog/itemCatalog/ directory
+
+11. Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/itemCatalog/itemCatalog/client_secrets.json'_
+12. Install pip  with the using the command sudo apt-get install python-pip
+13. Install virtualenv using the command  sudo apt-get install python-virtualenv
+14. cd to the /var/www/itemCatalog/itemCatalog/ directory; choose a name for a temporary environment let's say 'venv' for now. To create this environment use the command virtualenv venv.
+15. To activate the new environment, venv use the command . venv/bin/activate
+16. While the virtual environment active, install the following dependenies
+
+pip install httplib2
+
+pip install requests
+
+pip install --upgrade oauth2client
+
+pip install sqlalchemy
+
+pip install flask
+
+sudo apt-get install libpq-dev 
+
+pip install psycopg2
+
+17. To verify everything was installed correctly, run python __init__.py; the followingshould be returned:
+
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+18 To Deactivate the virtual environment use the command  deactivate
 
 
 
