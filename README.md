@@ -133,6 +133,65 @@ pip install psycopg2
 
 18 To Deactivate the virtual environment use the command  deactivate
 
+19. Create a file in /etc/apache2/sites-available/ called itemCatalog.conf
+
+Add the following into the file:
+
+<VirtualHost *:80>
+		ServerName XX.XX.XX.XX
+		ServerAdmin xxxx@domain.com
+		WSGIScriptAlias / /var/www/itemCatalog/itemCatalog.wsgi
+		<Directory /var/www/itemCatalog/itemCatalog/>
+			Order allow,deny
+			Allow from all
+			Options -Indexes
+		</Directory>
+		Alias /static /var/www/itemCatalog/itemCatalog/static
+		<Directory /var/www/itemCatalog/itemCatalog/static/>
+			Order allow,deny
+			Allow from all
+			Options -Indexes
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+20.  To enable the virtual host use the command sudo a2ensite itemCatalog 
+
+21. To activate the new configuration, you need to run: sudo service apache2 reload
+22. Apache serves Flask applications by using a .wsgi file; So create a file called itemCatalog.wsgi in /var/www/itemCatalog
+
+Add the following to the file:
+
+activate_this = '/var/www/itemCatalog/itemCatalog/venv/bin/activate_this.py'
+execfile(activate_this, dict(__file__=activate_this))
+
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/itemCatalog/")
+
+from nuevoMexico import app as application
+application.secret_key = 'xxxx'
+_23. Resart Apache using the command sudo service apache2 restart
+24. Replace line 38 in __init__.py, line 85 in database_setup.py, and line 7 in lotsofmenus.py with the following:
+
+engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
+_25. To disable the default Apache site  use the command sudo a2dissite 000-default.conf
+26. Run sudo service apache2 reload to reload apache
+27. Change the ownership of the project directories and files to the www-data user (this is done because Apache runs as the www-data user); while in the /var/www directory, run:
+
+sudo chown -R www-data:www-data itemCatalog/
+28. cd to /var/www/itemCatalog/itemCatalog/ directory, activate the virtualenv by running . venv/bin/activate
+
+29. Run python lotsofmenus.py
+30. Deactivate the virtualenv using the command deactivate
+31.  Resart Apache using the command sudo service apache2 restart
+
+Open up a browser and check to make sure the app is working by going to http://XX.XX.XX.XX or http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com
 
 
 
