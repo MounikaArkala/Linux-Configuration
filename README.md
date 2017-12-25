@@ -51,3 +51,13 @@ The public IP address of the instance is displayed along with its name. In the a
 18. now use the command sudo servce ssh restart to restart
 19. Switch to ubuntu user using the command exit
 20. Now you can login as a grader using the command ssh -i ~/.ssh/grader_key -p 2200 grader@XX.XX.XX.XX
+
+## Configure the local timezone to UTC
+1. To configure the local time use the command sudo dpkg-reconfigure tzdata
+2. UTC is under the 'None of the above' category
+
+## Prepare to deploy your project
+1. To install Apache use the command sudo apt-get install apache2, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
+2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : sudo apt-get install libapache2-mod-wsgi python-dev
+3. Enable  mod_wsgi _using the command  sudo a2enmod wsgi
+
