@@ -67,5 +67,21 @@ The public IP address of the instance is displayed along with its name. In the a
 8. Give the catalog user the ability to create databases using the command ALTER ROLE catalog CREATEDB;
 9. Give the catalog user a password using the command \password catalog
 10. To verify if the catalog user was created or not use the command \du; 
-10. Exit psql using the command \q
-11. Switch back to the ubuntu user by typing exit
+11. Exit psql using the command \q
+12. Switch back to the ubuntu user by typing exit
+13. Create a new Linux user called catalog using the command sudo adduser catalog; Fill out all required information for catalog
+14. To give the catalog user sudo permissions use the command  sudo visudo
+15. Search for a line that looks like this: root ALL=(ALL:ALL) ALL and add the following line below this one: catalog ALL=(ALL:ALL) ALL
+16. Save and close the visudo file
+17. Switch to  user 'catalog' using the command sudo su - catalog.
+18. Create a database called catalog using the command createdb catalog
+19. Connect to psql using the command psql and type \l to see the new database 'catalog' is listed or not. 
+20. Exit psql using the command \q
+21. Switch back to the ubuntu user by typing exit
+22. Install git using the command sudo apt-get install git\
+
+## Deploy the Item Catalog project.
+
+
+
+
