@@ -15,50 +15,19 @@ The public IP address of the instance is displayed along with its name. In the a
 ## Secure the server
 1. Update all currently installed packages using the command sudo apt-get update 
 2. Install newer versions of the packages  using the command sudo apt-get upgrade
-3. Open the /etc/ssh/sshd_config file 
-3. Start by changing the SSH port from 22 to 2200 (open up the /etc/ssh/sshd_config file, change the port number on line 5 to 2200, then restart SSH by running sudo service ssh restart; restarting SSH is a very important step!)
-
-Check to see if the ufw (the preinstalled ubuntu firewall) is active by running sudo ufw status
-
-Run sudo ufw default deny incoming to set the ufw firewall to block everything coming in
-
-Run sudo ufw default allow outgoing to set the ufw firewall to allow everything outgoing
-
-Run sudo ufw allow ssh to set the ufw firewall to allow SSH
-
-Run sudo ufw allow 2200/tcp to allow all tcp connections for port 2200 so that SSH will work
-
-Run sudo ufw allow www to set the ufw firewall to allow a basic HTTP server
-
-Run sudo ufw allow 123/udp to set the ufw firewall to allow NTP
-
-Run sudo ufw deny 22 to deny port 22 (deny this port since it is not being used for anything; it is the default port for SSH, but this virtual machine has now been configured so that SSH uses port 2200)
-
-Run sudo ufw enable to enable the ufw firewall
-
-Run sudo ufw status to check which ports are open and to see if the ufw is active; if done correctly, it should look like this:
-
-To                         Action      From
---                         ------      ----
-22                         DENY        Anywhere
-2200/tcp                   ALLOW       Anywhere
-80/tcp                     ALLOW       Anywhere
-123/udp                    ALLOW       Anywhere
-22 (v6)                    DENY        Anywhere (v6)
-2200/tcp (v6)              ALLOW       Anywhere (v6)
-80/tcp (v6)                ALLOW       Anywhere (v6)
-123/udp (v6)               ALLOW       Anywhere (v6)
-Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Manage' option, then the 'Networking' tab, and then changing the firewall configuration to match the internal firewall settings above (only ports 80(TCP), 123(UDP), and 2200(TCP) should be allowed; make sure to deny the default port 22)
-
-Now, to login (on a Mac), open up the Terminal and run:
-
-ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX, where XX.XX.XX.XX is the public IP address of the instance
-
-Note: As mentioned above, connecting to the instance through a browser now no longer works; this is because Lightsail's browser-based SSH access only works through port 22, which is now denied.
-
-
-
-
+3. Open the /etc/ssh/sshd_config file
+4. _Change the port number from 22 to 2200 on line 5. 
+5. Restart the SSH port using the command sudo service ssh restart.
+6. Set the ufw firewall to block everything coming in using the command sudo ufw default deny incoming
+7. Set the ufw firewall to allow everything outgoing using the command sudo ufw default allow outgoing
+8. Set the ufw firewall to allow SSH using the command sudo ufw allow ssh
+9. Allow all tcp connections for port 2200 using the command sudo ufw allow 2200/tcp
+10. Set the ufw firewall to allow a basic HTTP server using the command sudo ufw allow www 
+11. Set the ufw firewall to allow NTP using the command sudo ufw allow 123/udp
+12. To deny port 22 using the command sudo ufw deny 22
+13. To enable the ufw firewall use the command sudo ufw enable
+14. To check which ports are open use the command sudo ufw status
+15. To login open up the terminal and run ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX
 
 
 ## Create a new user 'grader' and create SSH pair for grader
