@@ -1,12 +1,12 @@
 # Linux-Configuration
-Project Linux Configuration consits of baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
+Project Linux Configuration consits of baseline installation of a Linux server and prepare it to host your web applications. It also has secure the server from a number of attack vectors, install and configure a database server, and deploy one of my existing web applications onto it.
  
 ## Get Started on Amazon Lightsail
 1) First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
 2) Once you're logged in, Lightsail will give you a friendly message with a robot on it, prompting you to create an instance. A Lightsail instance is a Linux server running on a virtual machine inside an Amazon datacenter.
 3) Lightsail supports a lot of different instance types. An instance image is a particular software setup, including an operating system and optionally built-in applications.
 For this project, you'll want a plain Ubuntu Linux image. There are two settings to make here. First, choose "OS Only" (rather than "Apps + OS"). Second, choose Ubuntu as the operating system.
-4) The instance plan controls how powerful of a server you get. It also controls how much money they want to charge you. For this project, the lowest tier of instance is just fine. And as long as you complete the project within a month and shut your instance down, the price will be zero.
+4) The instance plan controls how powerful of a server you get. It also controls how much money they want to charge you. And as long as you complete the project within a month and shut your instance down, the price will be zero.
 5) Every instance needs a unique hostname. You can use any name you like, as long as it doesn't have spaces or unusual characters in it. Your instance's name will be visible to you and to the project reviewer.
 6) It may take a few minutes for your instance to start up.
 7) Once your instance has started up, you can log into it with SSH from your browser.
@@ -24,10 +24,10 @@ The public IP address of the instance is displayed along with its name. In the a
 9. Allow all tcp connections for port 2200 using the command sudo ufw allow 2200/tcp
 10. Set the ufw firewall to allow a basic HTTP server using the command sudo ufw allow www 
 11. Set the ufw firewall to allow NTP using the command sudo ufw allow 123/udp
-12. To deny port 22 using the command sudo ufw deny 22
+12. To deny port 22 use the command sudo ufw deny 22
 13. To enable the ufw firewall use the command sudo ufw enable
 14. To check which ports are open use the command sudo ufw status
-15. To login open up the terminal and run ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX
+15. To login, open up the terminal and run ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX
 
 
 ## Create a new user 'grader' and create SSH pair for grader
@@ -39,14 +39,14 @@ The public IP address of the instance is displayed along with its name. In the a
 6. generate SSH pair using the command ssh-keygen
 7. choose a file name (.ssh/fileName), enter the passphrase twice.
 8. Two files are generated  .ssh/fileName and .ssh/fileName.pub
-9. We need the contents of fileName.pub for step 13 , so type the command cat .ssh/fileName.pub
+9. We need the contents of fileName.pub for step 13 , so type the command cat .ssh/fileName.pub and copy the contents.
 10. login as grader using the command sudo su - grader.
-11. Create a new directory called .ssh: mkdir .ssh
+11. Create a new directory called .ssh using the command mkdir .ssh
 12. Use the command touch .ssh/authorized_keys
 13. edit .ssh/authorized_keys file and paste the content we got from step 9.
 14. run chmod 700 .ssh
 15. run chmod 644 .ssh/authorized_keys
-16. To force the kry based authentication, open /etc/ssh/sshd_config 
+16. To force the key based authentication, open /etc/ssh/sshd_config 
 17. search for the line PassWord Authentication and change from no to yes if the line says no.
 18. now use the command sudo servce ssh restart to restart
 19. Switch to ubuntu user using the command exit
@@ -55,7 +55,7 @@ The public IP address of the instance is displayed along with its name. In the a
 ## Configure the local timezone to UTC
 1. To configure the local time use the command sudo dpkg-reconfigure tzdata
 2. UTC is under the 'None of the above' category
-
+# checked till here
 ## Prepare to deploy your project
 1. To install Apache use the command sudo apt-get install apache2, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
 2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : sudo apt-get install libapache2-mod-wsgi python-dev
