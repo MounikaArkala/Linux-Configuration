@@ -78,9 +78,28 @@ The public IP address of the instance is displayed along with its name. In the a
 19. Connect to psql using the command psql and type \l to see the new database 'catalog' is listed or not. 
 20. Exit psql using the command \q
 21. Switch back to the ubuntu user by typing exit
-22. Install git using the command sudo apt-get install git\
+22. Install git using the command sudo apt-get install git
 
 ## Deploy the Item Catalog project.
+
+1. Create a directory called 'itemCatalog' in the /var/www/ directory
+
+2. cd to the 'nuevoMexico' directory, and clone the itemCatalog project using the command: sudo git clone https://github.com/MounikaArkala/ItemCatalog.git itemCatalog
+
+3. Change the ownership of the 'itemCatalog' directory to ubuntu using the command sudo chown -R ubuntu:ubuntu itemCatalog/
+
+4. cd to the /var/www/itemCatalog/itemCatalog directory
+
+Change the name of the project.py file to __init__.py by running mv project.py __init__.py
+
+In __init__.py, find line 508:
+
+app.run(host='0.0.0.0', port=5656)
+
+Change this line to:
+
+app.run()
+
 
 
 
