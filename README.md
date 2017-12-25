@@ -60,4 +60,12 @@ The public IP address of the instance is displayed along with its name. In the a
 1. To install Apache use the command sudo apt-get install apache2, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
 2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : sudo apt-get install libapache2-mod-wsgi python-dev
 3. Enable  mod_wsgi _using the command  sudo a2enmod wsgi
-
+4. Install PostgreSQL using the command sudo apt-get install postgresql
+5. By default PostgreSQL creates a Linux user with the name postgres during installation; switch to this user using the command sudo su - postgres.
+6. Connect to psql using the command psql
+7. Create the catalog user using the command CREATE ROLE catalog WITH LOGIN;
+8. Give the catalog user the ability to create databases using the command ALTER ROLE catalog CREATEDB;
+9. Give the catalog user a password using the command \password catalog
+10. To verify if the catalog user was created or not use the command \du; 
+10. Exit psql using the command \q
+11. Switch back to the ubuntu user by typing exit
