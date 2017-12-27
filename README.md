@@ -31,54 +31,55 @@ The public IP address of the instance is displayed along with its name. In the a
 
 
 ## Create a new user 'grader' and create SSH pair for grader
-1. To create the user grader use the command sudo adduser grader
+1. To create the user grader use the command ```sudo adduser grader```
 2. Enter the passwd when prompted and fill the optional information of the user.
-3. To give sudo permissions for grader, use the command sudo visudo
-4. search for the line root ALL=(ALL:ALL) ALL, and type grader ALL=(ALL:ALL) ALL
+3. To give sudo permissions for grader, use the command ```sudo visudo```
+4. search for the line``` root ALL=(ALL:ALL) ALL```, and type ```grader ALL=(ALL:ALL) ALL```
 5. save and close the file.
 6. generate SSH pair using the command ssh-keygen
 7. choose a file name (.ssh/fileName), enter the passphrase twice.
 8. Two files are generated  .ssh/fileName and .ssh/fileName.pub
-9. We need the contents of fileName.pub for step 13 , so type the command cat .ssh/fileName.pub and copy the contents.
-10. login as grader using the command sudo su - grader.
-11. Create a new directory called .ssh using the command mkdir .ssh
-12. Use the command touch .ssh/authorized_keys
+9. We need the contents of fileName.pub for step 13 , so type the command ```cat .ssh/fileName.pub``` and copy the contents.
+10. login as grader using the command ```sudo su - grader```.
+11. Create a new directory called .ssh using the command ```mkdir .ssh```
+12. Use the command ```touch .ssh/authorized_keys```
 13. edit .ssh/authorized_keys file and paste the content we got from step 9.
-14. run chmod 700 .ssh
-15. run chmod 644 .ssh/authorized_keys
+14. run ```chmod 700 .ssh```
+15. run ```chmod 644 .ssh/authorized_keys```
 16. To force the key based authentication, open /etc/ssh/sshd_config 
 17. search for the line PassWord Authentication and change from no to yes if the line says no.
-18. now use the command sudo servce ssh restart to restart
-19. Switch to ubuntu user using the command exit
-20. Now you can login as a grader using the command ssh -i ~/.ssh/grader_key -p 2200 grader@XX.XX.XX.XX
+18. now use the command ```sudo servce ssh restart``` to restart
+19. Switch to ubuntu user using the command ```exit```
+20. Now you can login as a grader using the command ```ssh -i ~/.ssh/grader_key -p 2200 grader@XX.XX.XX.XX```
 
 ## Configure the local timezone to UTC
-1. To configure the local time use the command sudo dpkg-reconfigure tzdata
+1. To configure the local time use the command ```sudo dpkg-reconfigure tzdata```
 2. UTC is under the 'None of the above' category
 
 ## Prepare to deploy your project
-1. To install Apache use the command sudo apt-get install apache2, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
-2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : sudo apt-get install libapache2-mod-wsgi python-dev
-3. Enable  mod_wsgi _using the command  sudo a2enmod wsgi
-4. Install PostgreSQL using the command sudo apt-get install postgresql
-5. By default PostgreSQL creates a Linux user with the name postgres during installation; switch to this user using the command sudo su - postgres.
-6. Connect to psql using the command psql
-7. Create the catalog user using the command CREATE ROLE catalog WITH LOGIN;
-8. Give the catalog user the ability to create databases using the command ALTER ROLE catalog CREATEDB;
-9. Give the catalog user a password using the command \password catalog
-10. To verify if the catalog user was created or not use the command \du; 
-11. Exit psql using the command \q
-12. Switch back to the ubuntu user by typing exit
-13. Create a new Linux user called catalog using the command sudo adduser catalog; Fill out all required information for catalog
-14. To give the catalog user sudo permissions use the command  sudo visudo
-15. Search for a line that looks like this: root ALL=(ALL:ALL) ALL and add the following line below this one: catalog ALL=(ALL:ALL) ALL
+1. To install Apache use the command ```sudo apt-get install apache2```, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
+2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : ```sudo apt-get install libapache2-mod-wsgi python-dev```
+3. Enable  mod_wsgi _using the command  ```sudo a2enmod wsgi```
+4. Install PostgreSQL using the command ```sudo apt-get install postgresql```
+5. By default PostgreSQL creates a Linux user with the name postgres during installation; switch to this user using the command ```sudo su - postgres```.
+6. Connect to psql using the command ```psql```
+7. Create the catalog user using the command ```CREATE ROLE catalog WITH LOGIN;```
+8. Give the catalog user the ability to create databases using the command ```ALTER ROLE catalog CREATEDB;```
+8. Give the catalog user the ability to create databases using the command ```ALTER ROLE catalog CREATEDB;```
+9. Give the catalog user a password using the command ```\password catalog```
+10. To verify if the catalog user was created or not use the command ```\du; ```
+11. Exit psql using the command ```\q```
+12. Switch back to the ubuntu user by typing ```exit```
+13. Create a new Linux user called catalog using the command ```sudo adduser catalog;``` Fill out all required information for catalog
+14. To give the catalog user sudo permissions use the command  ```sudo visudo```
+15. Search for a line that looks like this: ```root ALL=(ALL:ALL) ALL``` and add the following line below this one: ```catalog ALL=(ALL:ALL) ALL```
 16. Save and close the visudo file
-17. Switch to  user 'catalog' using the command sudo su - catalog.
-18. Create a database called catalog using the command createdb catalog
-19. Connect to psql using the command psql and type \l to see the new database 'catalog' is listed or not. 
-20. Exit psql using the command \q
-21. Switch back to the ubuntu user by typing exit
-22. Install git using the command sudo apt-get install git
+17. Switch to  user 'catalog' using the command ```sudo su - catalog```.
+18. Create a database called catalog using the command ```createdb catalog```
+19. Connect to psql using the command ```psql``` and type ```\l``` to see the new database 'catalog' is listed or not. 
+20. Exit psql using the command ```\q```
+21. Switch back to the ubuntu user by typing ```exit```
+22. Install git using the command ```sudo apt-get install git```
 
 ## Deploy the Item Catalog project.
 
