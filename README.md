@@ -6,6 +6,21 @@ Project Linux Configuration consits of baseline installation of a Linux server a
 1. The IP address is 18.216.217.127
 2. The SSH port used is 2200.
 3. The URL to the hosted webpage is: http://18.216.217.127/ 
+
+## Software Required for this project
+1. Apache2
+2. mod_wsgi
+3. PostgreSQL
+4. git
+5. pip
+6. virtualenv
+7. httplib2
+8. Python Requests
+9. oauth2client
+10. SQLAlchemy
+11. Flask
+12. libpq-dev
+13. Psycopg2
  
 ## Get Started on Amazon Lightsail
 1) First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
