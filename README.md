@@ -88,13 +88,13 @@ The public IP address of the instance is displayed along with its name. In the a
 3. Change the ownership of the 'itemCatalog' directory to ubuntu using the command ```sudo chown -R ubuntu:ubuntu itemCatalog/```
 4. cd to the /var/www/itemCatalog/itemCatalog directory
 5. Change the name of the project.py file to __init__.py by running ```mv project.py __init__.py```
-6. In __init__.py, find line 508: ```app.run(host='0.0.0.0', port=5656)```
+6. In __init__.py, find line 321: ```app.run(host='0.0.0.0', port=5656)```
 Change this line to: ```app.run()```
 7. Log in to Google API Console and edit the Client ID for Web application
 8. Add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
 9. Add http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/login, http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/gconnect, and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/oauth2callback as authorized redirect URIs
 10. Download the JSON file and save it as client_secrets.json in the /var/www/itemCatalog/itemCatalog/ directory
-11. Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/itemCatalog/itemCatalog/client_secrets.json'_
+11. Add the complete file path for the client_secrets.json file in lines 21 and 52 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/itemCatalog/itemCatalog/client_secrets.json'_
 12. Install pip  with the using the command ```sudo apt-get install python-pip```
 13. Install virtualenv using the command ``` sudo apt-get install python-virtualenv```
 14. cd to the /var/www/itemCatalog/itemCatalog/ directory; choose a name for a temporary environment let's say 'venv' for now. To create this environment use the command ```virtualenv venv```.
@@ -167,7 +167,7 @@ from nuevoMexico import app as application
 application.secret_key = 'xxxx'
 ```
 23. Resart Apache using the command ```sudo service apache2 restart```
-24. Replace line 38 in __init__.py, line 85 in database_setup.py, and line 7 in lotsofmenus.py with the following: ```engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')```
+24. Replace line 24 in __init__.py, line 85 in database_setup.py, and line 7 in lotsofmenus.py with the following: ```engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')```
 25. To disable the default Apache site  use the command ```sudo a2dissite 000-default.conf```
 26. Run ```sudo service apache2 reload``` to reload apache
 27. Change the ownership of the project directories and files to the www-data user (this is done because Apache runs as the www-data user); while in the /var/www directory, run: ```sudo chown -R www-data:www-data itemCatalog/```
