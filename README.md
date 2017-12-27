@@ -185,11 +185,11 @@ application.secret_key = 'xxxx'
 
 ## Sources
 [Udacity course: Configuring Linux Web Servers](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4378692847/concepts/48114089560923)
-Udacity course: Linux Command Line Basics
+[Udacity course: Linux Command Line Basics](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4331066009/concepts/48010894810923)
 
-This site was built using [GitHub Pages](https://pages.github.com/).
 
-## Acknowledgment
+## Acknowledgement
+I thank [Ben Campbell](https://github.com/bencam/linux-server-configuration) for his excellent README file.
 
 
 
