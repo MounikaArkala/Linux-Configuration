@@ -65,7 +65,7 @@ The public IP address of the instance is displayed along with its name. In the a
 6. Connect to psql using the command ```psql```
 7. Create the catalog user using the command ```CREATE ROLE catalog WITH LOGIN;```
 8. Give the catalog user the ability to create databases using the command ```ALTER ROLE catalog CREATEDB;```
-8. Give the catalog user the ability to create databases using the command ```ALTER ROLE catalog CREATEDB;```
+8. Give the catalog user the ability to alter databases using the command ```ALTER ROLE catalog CREATEDB;```
 9. Give the catalog user a password using the command ```\password catalog```
 10. To verify if the catalog user was created or not use the command ```\du; ```
 11. Exit psql using the command ```\q```
@@ -84,29 +84,16 @@ The public IP address of the instance is displayed along with its name. In the a
 ## Deploy the Item Catalog project.
 
 1. Create a directory called 'itemCatalog' in the /var/www/ directory
-
 2. cd to the 'nuevoMexico' directory, and clone the itemCatalog project using the command: ```sudo git clone https://github.com/MounikaArkala/ItemCatalog.git itemCatalog```
-
 3. Change the ownership of the 'itemCatalog' directory to ubuntu using the command ```sudo chown -R ubuntu:ubuntu itemCatalog/```
-
 4. cd to the /var/www/itemCatalog/itemCatalog directory
-
 5. Change the name of the project.py file to __init__.py by running ```mv project.py __init__.py```
-
-6. In __init__.py, find line 508:
-
-```app.run(host='0.0.0.0', port=5656)```
-
-Change this line to:
-
-```app.run()```
-
+6. In __init__.py, find line 508: ```app.run(host='0.0.0.0', port=5656)```
+Change this line to: ```app.run()```
 7. Log in to Google API Console and edit the Client ID for Web application
 8. Add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
 9. Add http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/login, http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/gconnect, and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/oauth2callback as authorized redirect URIs
-
 10. Download the JSON file and save it as client_secrets.json in the /var/www/itemCatalog/itemCatalog/ directory
-
 11. Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/itemCatalog/itemCatalog/client_secrets.json'_
 12. Install pip  with the using the command ```sudo apt-get install python-pip```
 13. Install virtualenv using the command ``` sudo apt-get install python-virtualenv```
