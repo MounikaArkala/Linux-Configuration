@@ -1,5 +1,11 @@
+
 # Linux-Configuration
 Project Linux Configuration consits of baseline installation of a Linux server and prepare it to host your web applications. It also has secure the server from a number of attack vectors, install and configure a database server, and deploy one of my existing web applications onto it.
+
+## Access Information
+1. The IP address is 18.216.217.127
+2. The SSH port used is 2200.
+3. The URL to the hosted webpage is: http://18.216.217.127/ 
  
 ## Get Started on Amazon Lightsail
 1) First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
@@ -176,6 +182,15 @@ application.secret_key = 'xxxx'
 30. Deactivate the virtualenv using the command ```deactivate```
 31. Resart Apache using the command ```sudo service apache2 restart```
 32. Open up a browser and check to make sure the app is working by going to ```http://XX.XX.XX.XX``` or ```http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com```
+
+## Sources
+[Udacity course: Configuring Linux Web Servers](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4378692847/concepts/48114089560923)
+Udacity course: Linux Command Line Basics
+
+This site was built using [GitHub Pages](https://pages.github.com/).
+
+## Acknowledgment
+
 
 
 
