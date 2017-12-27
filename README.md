@@ -129,7 +129,7 @@ Change this line to:
 ```pip install psycopg2```
 
 17. To verify everything was installed correctly, run python __init__.py; the followingshould be returned:
-```
+
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
 18 To Deactivate the virtual environment use the command  ```deactivate```
