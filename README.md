@@ -13,21 +13,21 @@ For this project, you'll want a plain Ubuntu Linux image. There are two settings
 The public IP address of the instance is displayed along with its name. In the above picture it's XX.XX.XX.XXX. The DNS name of this instance is ec2-XX-XX-XX-XXX.compute-1.amazonaws.com.
 
 ## Secure the server
-1. Update all currently installed packages using the command sudo apt-get update 
-2. Install newer versions of the packages  using the command sudo apt-get upgrade
+1. Update all currently installed packages using the command ``` sudo apt-get update ```
+2. Install newer versions of the packages  using the command ``` sudo apt-get upgrade ```
 3. Open the /etc/ssh/sshd_config file
 4. _Change the port number from 22 to 2200 on line 5. 
-5. Restart the SSH port using the command sudo service ssh restart.
-6. Set the ufw firewall to block everything coming in using the command sudo ufw default deny incoming
-7. Set the ufw firewall to allow everything outgoing using the command sudo ufw default allow outgoing
-8. Set the ufw firewall to allow SSH using the command sudo ufw allow ssh
-9. Allow all tcp connections for port 2200 using the command sudo ufw allow 2200/tcp
-10. Set the ufw firewall to allow a basic HTTP server using the command sudo ufw allow www 
-11. Set the ufw firewall to allow NTP using the command sudo ufw allow 123/udp
-12. To deny port 22 use the command sudo ufw deny 22
-13. To enable the ufw firewall use the command sudo ufw enable
-14. To check which ports are open use the command sudo ufw status
-15. To login, open up the terminal and run ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX
+5. Restart the SSH port using the command ``` sudo service ssh restart ```
+6. Set the ufw firewall to block everything coming in using the command ```sudo ufw default deny incoming```
+7. Set the ufw firewall to allow everything outgoing using the command ```sudo ufw default allow outgoing```
+8. Set the ufw firewall to allow SSH using the command ```sudo ufw allow ssh```
+9. Allow all tcp connections for port 2200 using the command ```sudo ufw allow 2200/tcp```
+10. Set the ufw firewall to allow a basic HTTP server using the command ```sudo ufw allow www ```
+11. Set the ufw firewall to allow NTP using the command ```sudo ufw allow 123/udp```
+12. To deny port 22 use the command ```sudo ufw deny 22```
+13. To enable the ufw firewall use the command ```sudo ufw enable```
+14. To check which ports are open use the command ```sudo ufw status```
+15. To login, open up the terminal and run ```ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX```
 
 
 ## Create a new user 'grader' and create SSH pair for grader
@@ -55,7 +55,7 @@ The public IP address of the instance is displayed along with its name. In the a
 ## Configure the local timezone to UTC
 1. To configure the local time use the command sudo dpkg-reconfigure tzdata
 2. UTC is under the 'None of the above' category
-# checked till here
+
 ## Prepare to deploy your project
 1. To install Apache use the command sudo apt-get install apache2, verify if the apache is installed or not by using the public IP of Amazon Lightsail as a URL in the browser. A page with title  'Apache2 Ubuntu Default Page' should be loaded. 
 2. We need to install mod_wsgi _package to serve flask applications and python-dev wich consists of header files required for building python extensions. For this, use the command : sudo apt-get install libapache2-mod-wsgi python-dev
