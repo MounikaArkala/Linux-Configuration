@@ -179,17 +179,16 @@ sys.path.insert(0,"/var/www/itemCatalog/")
 from nuevoMexico import app as application
 application.secret_key = 'xxxx'
 ```
-_23. Resart Apache using the command ```sudo service apache2 restart```
+23. Resart Apache using the command ```sudo service apache2 restart```
 24. Replace line 38 in __init__.py, line 85 in database_setup.py, and line 7 in lotsofmenus.py with the following:
 
 ```engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')```
-_25. To disable the default Apache site  use the command ```sudo a2dissite 000-default.conf```
+25. To disable the default Apache site  use the command ```sudo a2dissite 000-default.conf```
 26. Run ```sudo service apache2 reload``` to reload apache
 27. Change the ownership of the project directories and files to the www-data user (this is done because Apache runs as the www-data user); while in the /var/www directory, run:
 
 ```sudo chown -R www-data:www-data itemCatalog/```
 28. cd to /var/www/itemCatalog/itemCatalog/ directory, activate the virtualenv by running ```. venv/bin/activate```
-
 29. Run``` python lotsofmenus.py```
 30. Deactivate the virtualenv using the command ```deactivate```
 31.  Resart Apache using the command ```sudo service apache2 restart```
