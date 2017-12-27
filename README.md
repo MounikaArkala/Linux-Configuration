@@ -138,14 +138,14 @@ Change this line to:
 
 Add the following into the file:
 
-```<VirtualHost *:80>
+``` <VirtualHost *:80>
 		ServerName XX.XX.XX.XX
 		ServerAdmin xxxx@domain.com
 		WSGIScriptAlias / /var/www/itemCatalog/itemCatalog.wsgi
 		<Directory /var/www/itemCatalog/itemCatalog/>
 			Order allow,deny
 			Allow from all
-			Options -Indexes
+			Options -Indexes```
 		</Directory>
 		Alias /static /var/www/itemCatalog/itemCatalog/static
 		<Directory /var/www/itemCatalog/itemCatalog/static/>
@@ -156,7 +156,7 @@ Add the following into the file:
 		ErrorLog ${APACHE_LOG_DIR}/error.log
 		LogLevel warn
 		CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>```
+</VirtualHost>
 
 
 20.  To enable the virtual host use the command ```sudo a2ensite itemCatalog ```
