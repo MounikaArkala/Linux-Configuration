@@ -85,21 +85,21 @@ The public IP address of the instance is displayed along with its name. In the a
 
 1. Create a directory called 'itemCatalog' in the /var/www/ directory
 
-2. cd to the 'nuevoMexico' directory, and clone the itemCatalog project using the command: sudo git clone https://github.com/MounikaArkala/ItemCatalog.git itemCatalog
+2. cd to the 'nuevoMexico' directory, and clone the itemCatalog project using the command: ```sudo git clone https://github.com/MounikaArkala/ItemCatalog.git itemCatalog```
 
-3. Change the ownership of the 'itemCatalog' directory to ubuntu using the command sudo chown -R ubuntu:ubuntu itemCatalog/
+3. Change the ownership of the 'itemCatalog' directory to ubuntu using the command ```sudo chown -R ubuntu:ubuntu itemCatalog/```
 
 4. cd to the /var/www/itemCatalog/itemCatalog directory
 
-5. Change the name of the project.py file to __init__.py by running mv project.py __init__.py
+5. Change the name of the project.py file to __init__.py by running ```mv project.py __init__.py```
 
 6. In __init__.py, find line 508:
 
-app.run(host='0.0.0.0', port=5656)
+```app.run(host='0.0.0.0', port=5656)```
 
 Change this line to:
 
-app.run()
+```app.run()```
 
 7. Log in to Google API Console and edit the Client ID for Web application
 8. Add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
@@ -108,37 +108,37 @@ app.run()
 10. Download the JSON file and save it as client_secrets.json in the /var/www/itemCatalog/itemCatalog/ directory
 
 11. Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/itemCatalog/itemCatalog/client_secrets.json'_
-12. Install pip  with the using the command sudo apt-get install python-pip
-13. Install virtualenv using the command  sudo apt-get install python-virtualenv
-14. cd to the /var/www/itemCatalog/itemCatalog/ directory; choose a name for a temporary environment let's say 'venv' for now. To create this environment use the command virtualenv venv.
-15. To activate the new environment, venv use the command . venv/bin/activate
+12. Install pip  with the using the command ```sudo apt-get install python-pip```
+13. Install virtualenv using the command ``` sudo apt-get install python-virtualenv```
+14. cd to the /var/www/itemCatalog/itemCatalog/ directory; choose a name for a temporary environment let's say 'venv' for now. To create this environment use the command ```virtualenv venv```.
+15. To activate the new environment, venv use the command ```. venv/bin/activate```
 16. While the virtual environment active, install the following dependenies
 
-pip install httplib2
+```pip install httplib2```
 
-pip install requests
+```pip install requests```
 
-pip install --upgrade oauth2client
+```pip install --upgrade oauth2client```
 
-pip install sqlalchemy
+```pip install sqlalchemy```
 
-pip install flask
+```pip install flask```
 
-sudo apt-get install libpq-dev 
+```sudo apt-get install libpq-dev ```
 
-pip install psycopg2
+```pip install psycopg2```
 
 17. To verify everything was installed correctly, run python __init__.py; the followingshould be returned:
-
+```
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
-18 To Deactivate the virtual environment use the command  deactivate
+18 To Deactivate the virtual environment use the command  ```deactivate```
 
 19. Create a file in /etc/apache2/sites-available/ called itemCatalog.conf
 
 Add the following into the file:
 
-<VirtualHost *:80>
+```<VirtualHost *:80>
 		ServerName XX.XX.XX.XX
 		ServerAdmin xxxx@domain.com
 		WSGIScriptAlias / /var/www/itemCatalog/itemCatalog.wsgi
@@ -156,16 +156,16 @@ Add the following into the file:
 		ErrorLog ${APACHE_LOG_DIR}/error.log
 		LogLevel warn
 		CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+</VirtualHost>```
 
 
-20.  To enable the virtual host use the command sudo a2ensite itemCatalog 
+20.  To enable the virtual host use the command ```sudo a2ensite itemCatalog ```
 
-21. To activate the new configuration, you need to run: sudo service apache2 reload
+21. To activate the new configuration, you need to run: ```sudo service apache2 reload```
 22. Apache serves Flask applications by using a .wsgi file; So create a file called itemCatalog.wsgi in /var/www/itemCatalog
 
 Add the following to the file:
-
+```
 activate_this = '/var/www/itemCatalog/itemCatalog/venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
@@ -177,22 +177,23 @@ sys.path.insert(0,"/var/www/itemCatalog/")
 
 from nuevoMexico import app as application
 application.secret_key = 'xxxx'
-_23. Resart Apache using the command sudo service apache2 restart
+```
+_23. Resart Apache using the command ```sudo service apache2 restart```
 24. Replace line 38 in __init__.py, line 85 in database_setup.py, and line 7 in lotsofmenus.py with the following:
 
-engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
-_25. To disable the default Apache site  use the command sudo a2dissite 000-default.conf
-26. Run sudo service apache2 reload to reload apache
+```engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')```
+_25. To disable the default Apache site  use the command ```sudo a2dissite 000-default.conf```
+26. Run ```sudo service apache2 reload``` to reload apache
 27. Change the ownership of the project directories and files to the www-data user (this is done because Apache runs as the www-data user); while in the /var/www directory, run:
 
-sudo chown -R www-data:www-data itemCatalog/
-28. cd to /var/www/itemCatalog/itemCatalog/ directory, activate the virtualenv by running . venv/bin/activate
+```sudo chown -R www-data:www-data itemCatalog/```
+28. cd to /var/www/itemCatalog/itemCatalog/ directory, activate the virtualenv by running ```. venv/bin/activate```
 
-29. Run python lotsofmenus.py
-30. Deactivate the virtualenv using the command deactivate
-31.  Resart Apache using the command sudo service apache2 restart
+29. Run``` python lotsofmenus.py```
+30. Deactivate the virtualenv using the command ```deactivate```
+31.  Resart Apache using the command ```sudo service apache2 restart```
 
-Open up a browser and check to make sure the app is working by going to http://XX.XX.XX.XX or http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com
+Open up a browser and check to make sure the app is working by going to ```http://XX.XX.XX.XX``` or ```http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com```
 
 
 
