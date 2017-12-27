@@ -138,7 +138,7 @@ Change this line to:
 
 Add the following into the file:
 
-
+```
 <VirtualHost *:80>
 		ServerName XX.XX.XX.XX
 		ServerAdmin xxxx@domain.com
@@ -158,7 +158,7 @@ Add the following into the file:
 		LogLevel warn
 		CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-
+```
 
 20.  To enable the virtual host use the command ```sudo a2ensite itemCatalog ```
 
